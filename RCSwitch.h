@@ -147,6 +147,7 @@ class RCSwitch {
     void setProtocol(Protocol protocol);
     void setProtocol(int nProtocol);
     void setProtocol(int nProtocol, int nPulseLength);
+	static void handleInterrupt();
 
   private:
     char* getCodeWordA(const char* sGroup, const char* sDevice, bool bStatus);
@@ -155,8 +156,7 @@ class RCSwitch {
     char* getCodeWordD(char group, int nDevice, bool bStatus);
     void transmit(HighLow pulses);
 
-    #if not defined( RCSwitchDisableReceiving )
-    static void handleInterrupt();
+    #if not defined( RCSwitchDisableReceiving )    
     static bool receiveProtocol(const int p, unsigned int changeCount);
     int nReceiverInterrupt;
     #endif
